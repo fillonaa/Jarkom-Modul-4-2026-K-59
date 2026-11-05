@@ -778,3 +778,529 @@ f=0; for ip in 10.93.0.2 10.93.0.3 10.93.4.2 10.93.4.3 10.93.8.2 10.93.8.3 10.93
 Hasil ping ke seluruh host:
 <img width="1110" height="831" alt="image" src="https://github.com/user-attachments/assets/3446ae61-8c1c-46d5-b8a2-80d2bfcaf1ae" />
 
+## CIDR
+<br><img width="1919" height="645" alt="image" src="https://github.com/user-attachments/assets/f2e4b018-719d-4b45-b0e5-ecb41201befd" />
+<img width="1919" height="645" alt="image" src="https://github.com/user-attachments/assets/79834ad5-6f24-444a-ad7f-cb1286820092" /><br>
+
+<br><img width="1919" height="915" alt="image" src="https://github.com/user-attachments/assets/482d8a47-088f-4bea-9bda-aa56eea71ad8" />
+<img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/3260b841-e59f-4163-8c84-7cc92766ddbc" /><br>
+  
+### Tabel koneksi
+
+| Asal | Interface | Tujuan | Interface |
+|---|---|---|---|
+| Cloud0 | Fa0 | R-Cyberia | Fa0/0 |
+| R-Cyberia | Fa0/1 | Switch1 | Fa0/1 |
+| Switch1 | Fa1/1 | JJ | Fa0 |
+| Switch1 | Fa2/1 | MyuMyu | Fa0 |
+| R-Cyberia | Fa1/0 | R-Wired | Fa0/0 |
+| R-Wired | Fa0/1 | R-Navi | Fa0/0 |
+| R-Navi | Fa0/1 | Switch6 | Fa0/1 |
+| R-Navi | Fa1/0 | Switch7 | Fa0/1 |
+| R-Navi | Fa1/1 | Switch8 | Fa0/1 |
+| Switch6 | Fa1/1 | Alice | Fa0 |
+| Switch6 | Fa2/1 | Reika | Fa0 |
+| Switch7 | Fa1/1 | Taro | Fa0 |
+| Switch8 | Fa1/1 | ServerKuma | Fa0 |
+| Switch8 | Fa2/1 | Miho | Fa0 |
+| Switch8 | Fa3/1 | Yasuo | Fa0 |
+| R-Wired | Fa1/0 | R-Tachibana | Fa0/0 |
+| R-Tachibana | Fa0/1 | R-Deus | Fa0/0 |
+| R-Tachibana | Fa1/0 | Switch9 | Fa0/1 |
+| Switch9 | Fa1/1 | Ghost | Fa0 |
+| Switch9 | Fa2/1 | ServerCollective | Fa0 |
+| R-Deus | Fa0/1 | Switch10 | Fa0/1 |
+| Switch10 | Fa1/1 | Lilith | Fa0 |
+| Switch10 | Fa2/1 | Specter | Fa0 |
+| R-Deus | Fa1/0 | R-Protocol7 | Fa0/0 |
+| R-Protocol7 | Fa1/0 | Switch11 | Fa0/1 |
+| Switch11 | Fa1/1 | Hodgeson | Fa0 |
+| Switch11 | Fa2/1 | Chisa | Fa0 |
+| R-Protocol7 | Fa0/1 | R-Knights | Fa0/0 |
+| R-Knights | Fa0/1 | ServerEri | Fa0 |
+| R-Knights | Fa1/0 | R-Phamoma | Fa0/0 |
+| R-Phamoma | Fa0/1 | R-Shibuya | Fa0/0 |
+| R-Shibuya | Fa0/1 | Switch13 | Fa0/1 |
+| Switch13 | Fa1/1 | Mika | Fa0 |
+| Switch13 | Fa2/1 | Lain | Fa0 |
+| R-Phamoma | Fa1/0 | Switch12 | Fa0/1 |
+| Switch12 | Fa1/1 | Semi | Fa0 |
+| R-Wired | Fa1/1 | Switch2 | Fa0/1 |
+| Switch2 | Fa1/1 | R-Schumann | Fa0/0 |
+| R-Schumann | Fa0/1 | R-Accela | Fa0/0 |
+| R-Accela | Fa0/1 | ServerAkashic | Fa0 |
+| R-Accela | Fa1/0 | Switch5 | Fa0/1 |
+| Switch5 | Fa1/1 | Denpa | Fa0 |
+| Switch5 | Fa2/1 | Omnipresence | Fa0 |
+| Switch2 | Fa2/1 | R-Copland | Fa0/0 |
+| R-Copland | Fa0/1 | Switch4 | Fa0/1 |
+| Switch4 | Fa1/1 | Masayuki | Fa0 |
+| R-Copland | Fa1/0 | Juri | Fa0 |
+| Switch2 | Fa3/1 | R-Psyche | Fa0/0 |
+| R-Psyche | Fa0/1 | Switch3 | Fa0/1 |
+| Switch3 | Fa1/1 | ServerLin | Fa0 |
+| Switch3 | Fa2/1 | ServerKarl | Fa0 |
+
+### Konfigurasi
+
+<details>
+<summary><strong>R-Cyberia</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Cyberia
+interface fastEthernet0/0
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.11.1 255.255.255.128
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.11.129 255.255.255.252
+ no shutdown
+ip route 0.0.0.0 0.0.0.0 10.93.11.130
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Wired</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Wired
+interface fastEthernet0/0
+ ip address 10.93.11.130 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.9.65 255.255.255.252
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.9.69 255.255.255.252
+ no shutdown
+interface fastEthernet1/1
+ ip address 10.93.2.65 255.255.255.248
+ no shutdown
+ip route 10.93.11.0 255.255.255.128 10.93.11.129
+ip route 10.93.8.0 255.255.254.0 10.93.9.66
+ip route 10.93.10.0 255.255.255.0 10.93.9.66
+ip route 10.93.16.0 255.255.252.0 10.93.9.70
+ip route 10.93.0.0 255.255.254.0 10.93.2.67
+ip route 10.93.2.0 255.255.255.192 10.93.2.67
+ip route 10.93.4.0 255.255.252.0 10.93.2.68
+ip route 10.93.2.72 255.255.255.252 10.93.2.66
+ip route 10.93.2.80 255.255.255.248 10.93.2.66
+ip route 10.93.20.0 255.255.252.0 10.93.2.66
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Navi</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Navi
+interface fastEthernet0/0
+ ip address 10.93.9.66 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.10.1 255.255.255.0
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.9.1 255.255.255.192
+ no shutdown
+interface fastEthernet1/1
+ ip address 10.93.8.1 255.255.255.0
+ no shutdown
+ip route 0.0.0.0 0.0.0.0 10.93.9.65
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Tachibana</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Tachibana
+interface fastEthernet0/0
+ ip address 10.93.9.70 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.16.65 255.255.255.252
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.18.1 255.255.254.0
+ no shutdown
+ip route 10.93.16.0 255.255.254.0 10.93.16.66
+ip route 0.0.0.0 0.0.0.0 10.93.9.69
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Deus</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Deus
+interface fastEthernet0/0
+ ip address 10.93.16.66 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.16.129 255.255.255.128
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.16.69 255.255.255.252
+ no shutdown
+ip route 10.93.16.0 255.255.255.192 10.93.16.70
+ip route 10.93.17.0 255.255.255.0 10.93.16.70
+ip route 0.0.0.0 0.0.0.0 10.93.16.65
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Protocol7</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Protocol7
+interface fastEthernet0/0
+ ip address 10.93.16.70 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.17.137 255.255.255.252
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.16.1 255.255.255.192
+ no shutdown
+ip route 10.93.17.0 255.255.255.0 10.93.17.138
+ip route 0.0.0.0 0.0.0.0 10.93.16.69
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Knights</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Knights
+interface fastEthernet0/0
+ ip address 10.93.17.138 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.17.129 255.255.255.248
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.17.141 255.255.255.252
+ no shutdown
+ip route 10.93.17.0 255.255.255.128 10.93.17.142
+ip route 0.0.0.0 0.0.0.0 10.93.17.137
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Phamoma</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Phamoma
+interface fastEthernet0/0
+ ip address 10.93.17.142 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.17.97 255.255.255.252
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.17.65 255.255.255.224
+ no shutdown
+ip route 10.93.17.0 255.255.255.192 10.93.17.98
+ip route 0.0.0.0 0.0.0.0 10.93.17.141
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Shibuya</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Shibuya
+interface fastEthernet0/0
+ ip address 10.93.17.98 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.17.1 255.255.255.192
+ no shutdown
+ip route 0.0.0.0 0.0.0.0 10.93.17.97
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Schumann</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Schumann
+interface fastEthernet0/0
+ ip address 10.93.2.66 255.255.255.248
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.2.73 255.255.255.252
+ no shutdown
+ip route 10.93.20.0 255.255.252.0 10.93.2.74
+ip route 10.93.2.80 255.255.255.248 10.93.2.74
+ip route 0.0.0.0 0.0.0.0 10.93.2.65
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Accela</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Accela
+interface fastEthernet0/0
+ ip address 10.93.2.74 255.255.255.252
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.2.81 255.255.255.248
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.20.1 255.255.252.0
+ no shutdown
+ip route 0.0.0.0 0.0.0.0 10.93.2.73
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Copland</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Copland
+interface fastEthernet0/0
+ ip address 10.93.2.67 255.255.255.248
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.0.1 255.255.254.0
+ no shutdown
+interface fastEthernet1/0
+ ip address 10.93.2.1 255.255.255.192
+ no shutdown
+ip route 0.0.0.0 0.0.0.0 10.93.2.65
+end
+write memory
+```
+
+</details>
+
+<details>
+<summary><strong>R-Psyche</strong></summary>
+
+<br>
+
+```cisco
+enable
+configure terminal
+hostname R-Psyche
+interface fastEthernet0/0
+ ip address 10.93.2.68 255.255.255.248
+ no shutdown
+interface fastEthernet0/1
+ ip address 10.93.4.1 255.255.252.0
+ no shutdown
+ip route 0.0.0.0 0.0.0.0 10.93.2.65
+end
+write memory
+```
+
+</details>
+
+
+### Tabel host
+
+| Node | IP Address | Subnet Mask | Default Gateway |
+|---|---|---|---|
+| JJ | 10.93.11.2 | 255.255.255.128 | 10.93.11.1 |
+| MyuMyu | 10.93.11.3 | 255.255.255.128 | 10.93.11.1 |
+| Alice | 10.93.10.2 | 255.255.255.0 | 10.93.10.1 |
+| Reika | 10.93.10.3 | 255.255.255.0 | 10.93.10.1 |
+| Taro | 10.93.9.2 | 255.255.255.192 | 10.93.9.1 |
+| ServerKuma | 10.93.8.2 | 255.255.255.0 | 10.93.8.1 |
+| Miho | 10.93.8.3 | 255.255.255.0 | 10.93.8.1 |
+| Yasuo | 10.93.8.4 | 255.255.255.0 | 10.93.8.1 |
+| ServerCollective | 10.93.18.2 | 255.255.254.0 | 10.93.18.1 |
+| Ghost | 10.93.18.3 | 255.255.254.0 | 10.93.18.1 |
+| Lilith | 10.93.16.130 | 255.255.255.128 | 10.93.16.129 |
+| Specter | 10.93.16.131 | 255.255.255.128 | 10.93.16.129 |
+| Hodgeson | 10.93.16.2 | 255.255.255.192 | 10.93.16.1 |
+| Chisa | 10.93.16.3 | 255.255.255.192 | 10.93.16.1 |
+| ServerEri | 10.93.17.130 | 255.255.255.248 | 10.93.17.129 |
+| Semi | 10.93.17.66 | 255.255.255.224 | 10.93.17.65 |
+| Mika | 10.93.17.2 | 255.255.255.192 | 10.93.17.1 |
+| Lain | 10.93.17.3 | 255.255.255.192 | 10.93.17.1 |
+| ServerAkashic | 10.93.2.82 | 255.255.255.248 | 10.93.2.81 |
+| Denpa | 10.93.20.2 | 255.255.252.0 | 10.93.20.1 |
+| Omnipresence | 10.93.20.3 | 255.255.252.0 | 10.93.20.1 |
+| Masayuki | 10.93.0.2 | 255.255.254.0 | 10.93.0.1 |
+| Juri | 10.93.2.2 | 255.255.255.192 | 10.93.2.1 |
+| ServerKarl | 10.93.4.2 | 255.255.252.0 | 10.93.4.1 |
+| ServerLin | 10.93.4.3 | 255.255.252.0 | 10.93.4.1 |
+
+### Testing 
+
+#### Komunikasi satu subnet
+JJ ke MyuMyu
+```
+ping 10.93.11.3
+```
+<br><img width="473" height="228" alt="image" src="https://github.com/user-attachments/assets/786b1e5e-9f81-4a90-a635-50fb8778081c" /><br>
+
+#### Komunikasi antarsubnet
+JJ ke Alice
+```
+ping 10.93.10.2
+```
+<br><img width="479" height="211" alt="image" src="https://github.com/user-attachments/assets/633d170c-4ada-4508-b72e-0af46c2783a7" /><br>
+
+#### Ping antarnode paling jauh
+Server Lin ke Mika
+```
+ping 10.93.17.2
+```
+<br><img width="497" height="211" alt="image" src="https://github.com/user-attachments/assets/754b1ca2-62cc-4cd3-9f61-e635bdd04be9" /><br>
+<br><img width="469" height="236" alt="image" src="https://github.com/user-attachments/assets/779a6b83-92a3-4138-9da3-24e367e678ff" /><br>
+
+**Hasil Traceroute**
+  
+| Hop | IP Address   | Node        | Keterangan                |
+| --- | ------------ | ----------- | ------------------------- |
+| 1   | 10.93.4.1    | R-Psyche    | Default gateway ServerLin |
+| 2   | 10.93.2.65   | R-Wired     | Router pusat              |
+| 3   | 10.93.9.70   | R-Tachibana | Menuju cabang R-Deus      |
+| 4   | 10.93.16.66  | R-Deus      | Menuju R-Protocol7        |
+| 5   | 10.93.16.70  | R-Protocol7 | Menuju R-Knights          |
+| 6   | 10.93.17.138 | R-Knights   | Menuju R-Phamoma          |
+| 7   | 10.93.17.142 | R-Phamoma   | Menuju R-Shibuya          |
+| 8   | 10.93.17.98  | R-Shibuya   | Gateway jaringan Mika     |
+| 9   | 10.93.17.2   | Mika        | Host tujuan               |
+
+#### Hanya Cyberia yang Terhubung ke NAT/Cloud
+
+Untuk memenuhi persyaratan bahwa R-Cyberia merupakan satu-satunya router yang terhubung langsung ke NAT/Cloud, dilakukan penambahan perangkat **Cable Modem** dan **R-ISP** sebagai simulasi jaringan eksternal  
+  
+Cable Modem berfungsi menghubungkan Cloud0 dengan R-ISP melalui kabel Coaxial dan Copper Straight-Through. Pada Cloud0, ditambahkan modul port Coaxial serta konfigurasi koneksi Cable agar trafik dapat diteruskan antara R-Cyberia dan R-ISP  
+  
+R-ISP dikonfigurasi menggunakan IP `203.0.113.1/30` pada interface Fa0/0 dan IP `198.51.100.10/32` pada Loopback0 sebagai alamat tujuan pengujian jaringan eksternal. Sementara itu, R-Cyberia menggunakan IP `203.0.113.2/30` pada Fa0/0 serta konfigurasi NAT Overload agar perangkat dalam jaringan internal dapat mengakses jaringan eksternal melalui satu alamat IP keluar  
+  
+Selain itu, default route pada R-Wired diarahkan menuju R-Cyberia, sedangkan default route R-Cyberia diarahkan menuju R-ISP. Dengan konfigurasi tersebut, seluruh trafik menuju jaringan eksternal diarahkan melalui R-Cyberia sebagai satu-satunya gerbang keluar jaringan internal  
+  
+**1. Pengujian Koneksi R-Cyberia ke R-ISP**
+
+```bash
+! Node R-Cyberia
+ping 203.0.113.1
+```
+
+<br><img width="585" height="98" alt="image" src="https://github.com/user-attachments/assets/de365c13-f9d5-41d2-8086-9a0504786d5f" /><br>
+
+
+**Keterangan:** Pengujian menunjukkan bahwa R-Cyberia berhasil melakukan ping ke IP `203.0.113.1` . Ini membuktikan bahwa koneksi antara R-Cyberia dan R-ISP melalui Cloud0 dan Cable Modem telah berfungsi dengan baik
+
+**2. Pengujian Koneksi R-Cyberia ke Jaringan Eksternal**
+
+```bash
+! Node R-Cyberia
+ping 198.51.100.10
+```
+
+<br><img width="582" height="109" alt="image" src="https://github.com/user-attachments/assets/cde439eb-a615-4fbb-b7d6-9dc4ad5f751d" /><br>
+
+
+**Keterangan:** Pengujian menunjukkan bahwa R-Cyberia berhasil menjangkau IP `198.51.100.10`, yaitu alamat Loopback0 pada R-ISP yang digunakan sebagai simulasi tujuan eksternal. Keberhasilan ping membuktikan bahwa R-Cyberia dapat meneruskan paket menuju jaringan eksternal melalui Cloud0. Pengujian ini juga memastikan bahwa alamat tujuan eksternal dapat dijangkau sebelum dilakukan pengujian dari host internal.
+
+**3. Pengujian Akses Jaringan Eksternal dari ServerLin**
+
+```bash
+! Node ServerLin
+ping 198.51.100.10
+```
+
+<br><img width="463" height="207" alt="image" src="https://github.com/user-attachments/assets/cc4c79ec-f8e1-4b73-99dd-4cf5a45f605f" /><br>
+
+
+**Keterangan:** Pengujian menunjukkan bahwa ServerLin (`10.93.4.3`) berhasil melakukan ping ke IP eksternal `198.51.100.10`. Paket dari ServerLin diteruskan melalui R-Psyche, R-Wired, dan R-Cyberia sebelum mencapai R-ISP.
+
+Keberhasilan pengujian ini membuktikan bahwa perangkat pada jaringan internal dapat mengakses jaringan eksternal melalui R-Cyberia. Dengan demikian, R-Cyberia berfungsi sebagai gerbang utama menuju Cloud tanpa memerlukan koneksi Cloud langsung pada router internal lainnya.
+
+**Kesimpulan**
+
+Ketiga pengujian menunjukkan bahwa koneksi antara jaringan internal dan jaringan eksternal telah berfungsi. R-Cyberia berhasil terhubung ke R-ISP melalui Cloud0, serta mampu meneruskan komunikasi dari ServerLin menuju jaringan eksternal. Dengan topologi yang hanya menghubungkan R-Cyberia secara langsung ke Cloud0, persyaratan bahwa R-Cyberia menjadi satu-satunya router internal yang terhubung ke NAT/Cloud telah terpenuhi.
+
+
+
