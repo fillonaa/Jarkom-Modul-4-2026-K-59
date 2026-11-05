@@ -7,7 +7,6 @@ Kelompok K-59
 - Fiorellin Ilona (5027251082)
 
 **Tabel VLSM & CIDR** — [Lihat di sini](https://docs.google.com/spreadsheets/d/1PUpoLQYjfaRGRRebn9LsKU0Vb2Xrhriz/edit?gid=2130535811#gid=2130535811)  
-  
 **File Topologi, Tree, dan Pengelompokan Subnet** — [Lihat di sini](https://drive.google.com/file/d/12ryPP8ta6dM37A4o1p3-ZqQczXjsYY1H/view?usp=sharing)
 
 ## Daftar Isi
