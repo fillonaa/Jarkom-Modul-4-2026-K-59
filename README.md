@@ -6,8 +6,13 @@ Kelompok K-59
 - Salsabila Rafa Syafira (5027251059)
 - Fiorellin Ilona (5027251082)
 
+**Tabel VLSM & CIDR** — [Lihat di sini](https://docs.google.com/spreadsheets/d/1PUpoLQYjfaRGRRebn9LsKU0Vb2Xrhriz/edit?gid=2130535811#gid=2130535811)  
+  
+**File Topologi, Tree, dan Pengelompokan Subnet** — [Lihat di sini](https://drive.google.com/file/d/12ryPP8ta6dM37A4o1p3-ZqQczXjsYY1H/view?usp=sharing)
+
 ## Daftar Isi
 
+- [CIDR](#cidr)
 - [Informasi Jaringan](#informasi-jaringan)
 - [Pembagian Peran Node](#pembagian-peran-node)
 - [Pemetaan Node dan Koneksi](#pemetaan-node-dan-koneksi)
@@ -19,6 +24,7 @@ Kelompok K-59
   - [Langkah 4: Konfigurasi Router di GNS3](#langkah-4-konfigurasi-router-di-gns3)
   - [Langkah 5: Konfigurasi Host di GNS3](#langkah-5-konfigurasi-host-di-gns3)
   - [Pengujian](#pengujian)
+
 
 ## Informasi Jaringan
 
